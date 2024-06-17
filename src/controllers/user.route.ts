@@ -10,7 +10,7 @@ export async function createUser(req: Request, res: Response) {
 
     res.status(201).json({
       status: true,
-      message: "User Successfuly Created",
+      message: "User Successfully Created",
       data: user,
     });
   } catch (error) {
@@ -27,7 +27,23 @@ export async function getUsers(req: Request, res: Response) {
 
   res.json({
     status: true,
-    message: "Users Successfuly Fetched",
+    message: "Users Successfully Fetched",
     data: users,
+  });
+}
+
+export async function getUser(req: Request, res: Response) {
+  const { userid } = req.params;
+
+  const user = await prisma.user.findFirst({
+    where: {
+      id: userid,
+    },
+  });
+
+  res.json({
+    status: true,
+    message: "User Successfully Fetched",
+    data: user,
   });
 }
