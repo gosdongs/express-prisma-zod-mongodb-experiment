@@ -20,3 +20,14 @@ export async function createUser(req: Request, res: Response) {
     });
   }
 }
+
+// Get all users
+export async function getUsers(req: Request, res: Response) {
+  const users = await prisma.user.findMany();
+
+  res.json({
+    status: true,
+    message: "Users Successfuly Fetched",
+    data: users,
+  });
+}
