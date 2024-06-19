@@ -53,12 +53,12 @@ export async function getUser(req: Request, res: Response) {
 
 // Delete a user
 export async function deleteUser(req: Request, res: Response) {
-  const { userId } = req.params;
+  const { userid } = req.params;
 
   try {
     const user = await prisma.user.findFirst({
       where: {
-        id: userId,
+        id: userid,
       },
     });
 
@@ -71,7 +71,7 @@ export async function deleteUser(req: Request, res: Response) {
 
     await prisma.user.delete({
       where: {
-        id: userId,
+        id: userid,
       },
     });
 
@@ -92,11 +92,11 @@ export async function deleteUser(req: Request, res: Response) {
 // Update a user
 export async function updateUser(req: Request, res: Response) {
   try {
-    const { userId } = req.params;
+    const { userid } = req.params;
 
     const user = await prisma.user.findFirst({
       where: {
-        id: userId,
+        id: userid,
       },
     });
 
@@ -109,7 +109,7 @@ export async function updateUser(req: Request, res: Response) {
 
     const updatedUser = await prisma.user.update({
       where: {
-        id: userId,
+        id: userid,
       },
       data: req.body,
     });
