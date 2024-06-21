@@ -6,6 +6,7 @@ export const createUserSchema = z
     email: z.string().email(),
     phoneNumber: z.string().regex(/^\d+$/),
     gender: z.enum(["male", "female", "others"]),
+    age: z.number().min(1).optional(),
   })
   .strict();
 
